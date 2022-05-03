@@ -1,6 +1,6 @@
 package AvaliacaoTexto;
 import java.util.Scanner;
-import java.util.ArrayList;
+
 
 public class texto {
 
@@ -8,21 +8,15 @@ public class texto {
 		
 		Scanner ler = new Scanner(System.in);
 		
-		String[] Frasesm;
-		int op, cont=0;
-		String Frase;
+		String Frases;
+		char c;
+		int op,n,cont=0, numVogal=0, vogais=0, consoante=0;
+		
 		
 		System.out.println("Digite uma frase para ser avaliada: ");
-		Frase=ler.next();
-		Frasesm=Frase.split(",");
+		Frases=ler.nextLine();
 		
-		ArrayList<String> nomesArrayList = new ArrayList<>();
-		
-		for (int i = 0; i < Frasesm.length; i++){
-			Frase=Frasesm[i];
-			
-			nomesArrayList.add(Frase);
-		
+		do{
 			System.out.println("(1) Número de sentenças (ponto final, exclamação e interrogação) ");
 			System.out.println("(2) Número de Palavras ");
 			System.out.println("(3) Número de Vogais ");
@@ -32,31 +26,58 @@ public class texto {
 		
 			switch(op) {
 				case 1:
-				if(Frase.equals(".") || Frase.equals("!")|| Frase.equals("?")){
-					cont++;
+					cont=0;
+					n=(Frases.length());
+					for(int i=0;i<n;i++) {
+						if((Frases.charAt(i) == '.') || (Frases.charAt(i) == '?') || (Frases.charAt(i) == '!'));
+						cont++;
 					}
-				else
-					System.out.println(" Não possui sentenças");
+					System.out.println(" Numero de Frases é " + cont);
 				break;
 			
 				case 2:
-					int var = Frase.split(" ", -1).length - 1;
+					int var = Frases.split(" ", -1).length - 1;
 					System.out.println((var+1) + " palavras");
 				break;
 			
 				case 3:
+					vogais=0;
+					Frases = Frases.toUpperCase();
+					for(int i=0; i < Frases.length(); i++)
+					{
+						c=Frases.charAt(i);
+						if(c == 'A' || c == 'E' || c =='I' || c == 'O' || c == 'U')
+						{
+							vogais++;
+							
+						}
+					}
+					System.out.println(vogais);	
 				break;
 			
 				case 4:
+					consoante=0;
+					
+					Frases = Frases.toUpperCase();
+					for(int i=0; i < Frases.length(); i++)
+					{
+						c=Frases.charAt(i);
+						if(c != 'A' || c != 'E' || c !='I' || c != 'O' || c != 'U')
+						{
+							consoante++;
+							
+						}
+					}
+					System.out.println(consoante);	
 				break;
-			
+				case 5:
+				break;
 				default:
 					System.out.print("Finalizado");
-			
 				
 			}	
 		
 		
+		}while(op!=5);
 		}
 	}
-}
